@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router(); // création d'un router avec la méthode .Router() d'express
-
-const Sauce = require('../models/Sauce');
+const auth = require('../middleware/auth');
+const sauceCtrl = require('../controllers/sauces');
+const multer = require('../middleware/multer-config');
 
 // Création des routes pour différentes requêtes
 router.post('/', auth, multer, sauceCtrl.createSauce);           
