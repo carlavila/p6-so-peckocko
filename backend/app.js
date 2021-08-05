@@ -1,36 +1,34 @@
-const express = require('express'); // cela importe le paquet express pour la création de l'API
+// Importer le package express
+const express = require('express');
+//importer body-parser
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const path = require('path');     // Pour gérer nos images
+//Importer mongoose
+const mongoose = require("mongoose");
 
- // Récupération des routes
-const saucesRoutes = require('./routes/sauces.js'); 
-const userRoutes = require('./routes/user.js');  
 
-// Tentative de connexion à la base
-mongoose.connect('mongodb+srv://vilacarla:openclassrooms@cluster0.d7oc2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb://user_1:openclassrooms@cluster0-shard-00-00.4voav.mongodb.net:27017,cluster0-shard-00-01.4voav.mongodb.net:27017,cluster0-shard-00-02.4voav.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-z8zjxo-shard-0&authSource=admin&retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-const app = express(); // ça crée une application express
+//Créer une application express
+const app = express()
 
-// Déclaration des headers
-app.use((req, res, next) => {     // donne l'accès du backend au frontend  
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-      next();
-  });
 
-app.use(bodyParser.json()); // transforme le corp de la requête en object Javascript utilisable 
+app.use((req, res, next) => {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader(
+	  "Access-Control-Allow-Headers",
+	  "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+	);
+	res.setHeader(
+	  "Access-Control-Allow-Methods",
+	  "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+	);
+	next();
+      });
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
-
-app.use('/api/sauces', saucesRoutes);
-app.use('/api/auth', userRoutes);
-module.exports = app; // exporter cette application pour pouvoir y accéder depuis les autres fichiers
-
-// middleware : fonction dans une application express qui recoit la requete et la réponse, qu'il les gère et qui peuvent ensuite passer l'execution à un prochain middleware
+//exporter cette application pour qu'on puisse y accéder depuis les autres fichiers 
+module.exports = app;
