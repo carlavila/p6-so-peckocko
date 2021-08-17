@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
-	bcrypt.hash(req.body.password, 10)    // Fonction de cryptage du mot de passe avec le mot de passé par le frontend et le solde de l'algorythme de hashage 
+  console.log(req.body.password);
+  bcrypt.hash(req.body.password, 10)    // Fonction de cryptage du mot de passe avec le mot de passé par le frontend et le solde de l'algorythme de hashage 
 	.then(hash => {                     // On récupère le hash de mot de passe
 	  const user = new User({           // Création du nouvelle utilisateur 
 	    email: req.body.email,
