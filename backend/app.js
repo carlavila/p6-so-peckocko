@@ -4,14 +4,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 //Importer mongoose
 const mongoose = require("mongoose");
+//Importer helmet
+const helmet = require("helmet");
 //Importer path qui donne acces au chemin du systeme du fichier
 const path = require("path");
+
+require('dotenv').config();
+
 //Importer le routeur
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 
-mongoose.connect('mongodb://user_1:openclassrooms@cluster0-shard-00-00.4voav.mongodb.net:27017,cluster0-shard-00-01.4voav.mongodb.net:27017,cluster0-shard-00-02.4voav.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-z8zjxo-shard-0&authSource=admin&retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://user_1:openclassrooms@cluster0.4voav.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -21,6 +26,7 @@ mongoose.connect('mongodb://user_1:openclassrooms@cluster0-shard-00-00.4voav.mon
 //Créer une application express
 const app = express()
 
+app.use(helmet());
 
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");

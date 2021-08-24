@@ -1,6 +1,6 @@
 // Package pour crypter le mot de passe
 const bcrypt = require('bcrypt');   
-
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 exports.signup = (req, res, next) => {
@@ -39,8 +39,8 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(500).json({ error }));   //Erreur serveur
+        .catch(error => res.status(500).json({ error }));  //Erreur serveur
     })
-    .catch(error => res.status(500).json({ error }));       //Erreur serveur
+    .catch(error => res.status(500).json({ error }));        //Erreur serveur
 };
 
