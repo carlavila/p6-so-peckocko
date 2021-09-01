@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-exports.signup = (req, res, next) => {
+exports.signup = (req, res, next) => { //S'INSCRIRE
   console.log(req.body.password);
   bcrypt.hash(req.body.password, 10)    // Fonction de cryptage du mot de passe avec le mot de passé par le frontend et le solde de l'algorythme de hashage 
 	.then(hash => {                     // On récupère le hash de mot de passe
@@ -18,7 +18,7 @@ exports.signup = (req, res, next) => {
 	.catch(error => res.status(500).json({ error }));
 };
 
-exports.login = (req, res, next) => {
+exports.login = (req, res, next) => { //SE CONNECTER
 	console.log('Connecté en tant que : ' + req.body.email);
   User.findOne({ email: req.body.email }) // Méthode findOne pour trouver l'utilisateur dans la base de donnée correspondant à l'adresse mail envoyé dans la requête
     .then(user => {
@@ -34,7 +34,7 @@ exports.login = (req, res, next) => {
             userId: user._id,        // L'identifiant de l'utilisateur dans la base de donnée
             token: jwt.sign(        // On génére un token valable pendant 24h
               { userId: user._id },
-              'RANDOM_TOKEN_SECRET',
+              process.env.TOKEN_KEY,
               { expiresIn: '24h' }
             )
           });
