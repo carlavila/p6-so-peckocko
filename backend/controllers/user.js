@@ -1,5 +1,4 @@
-// Package pour crypter le mot de passe
-const bcrypt = require('bcrypt');   
+const bcrypt = require('bcrypt');   // Package pour crypter le mot de passe
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 

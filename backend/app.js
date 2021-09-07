@@ -28,7 +28,7 @@ const app = express()
 
 app.use(helmet());
 
-app.use((req, res, next) => {
+app.use((req, res, next) => { // accéder à notre API depuis n'importe quelle origine '*'
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	res.setHeader(
 	  "Access-Control-Allow-Headers",
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 	  "GET, POST, PUT, DELETE, PATCH, OPTIONS"
 	);
 	next();
-      });
+});
 
 
 //Transforme le corp de la requête en object Javascript utilisable 
