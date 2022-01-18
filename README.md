@@ -1,24 +1,24 @@
 # p6-so-peckocko
 
-###Contexte
+### Contexte
 
 La marque So Pekocko, qui crée des sauces piquantes, connaît un franc succès, en partie grâce à sa chaîne de vidéos YouTube “La piquante”. L’entreprise souhaite désormais développer une application d’évaluation de ses sauces piquantes, appelée “Piquante”. Même si l’application deviendra peut-être un magasin en ligne dans un futur proche, Sophie, la product owner de So Pekocko, a décidé que le MVP du projet sera une application web permettant aux utilisateurs d’ajouter leurs sauces préférées et de liker ou disliker les sauces ajoutées par les autres utilisateurs.
 
 
-###Mission
+### Mission
 
 En tant que développeur backend freelance, la mission est de développer le backend et de créer l'API.
 
 
-###Réalisation de l’API
+### Réalisation de l’API
 
 
-##Points de vigilance
+## Points de vigilance
 
 L’entreprise ayant subi quelques attaques sur son site web ces ernières semaines, le fondateur souhaite que les données des tilisateurs soient parfaitement protégées. Pour cela, l’API utilisée devra impérativement respecter des pratiques de code sécurisé.
 
 
-##Exigences concernant la sécurité
+## Exigences concernant la sécurité
 
 - l’API doit respecter le RGPD et les standards OWASP ;
 - le mot de passe des utilisateurs doit être chiffré ;
@@ -28,16 +28,16 @@ L’entreprise ayant subi quelques attaques sur son site web ces ernières semai
 - les mots de passe sont stockés de manière sécurisée ;
 - les adresses mails de la base de données sont uniques et un plugin Mongoose approprié est utilisé pour s’assurer de leur caractère unique et rapporter des erreurs.
 
-##Erreurs API
+## Erreurs API
 
 Toute erreur doit être renvoyée telle quelle, sans aucune modification ni ajout. Si nécessaire, utiliser une nouvelle Erreur().
 
-##Routes API
+## Routes API
 
 Toutes les routes relatives à la sauce doivent exiger une demande authentifiée (contenant un jeton valide dans son en-tête d'autorisation : "Bearer ").
 
 
-###Technologies à utiliser
+### Technologies à utiliser
 
 - Framework : Express ;
 - Serveur : NodeJS ;
@@ -45,7 +45,7 @@ Toutes les routes relatives à la sauce doivent exiger une demande authentifiée
 - Toutes les opérations de la base de données doivent utiliser le pack Mongoose avec des schémas de données stricts.
 
 
-###Installation
+### Installation
 
 Ouvrir un terminal :
 
@@ -60,10 +60,10 @@ Ouvrir un second terminal :
 - Puis ```nodemon server``` pour lancer le serveur
 
 
-###Configuration du fichier .env
+### Configuration du fichier .env
 
 Vous trouverez un fichier .env.prod dans le dossier backend. Il vous faudra modifier ce fichier en le renommant en .env et en remplaçant les valeurs par vos informations (user, password, token...)
 
-###Pour lancer l'application
+### Pour lancer l'application
 
 Ouvrez un navigateur puis rendez vous sur http://localhost:4200/ pour lancer l'application.
